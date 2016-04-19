@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      1511,         63]
-NotebookOptionsPosition[      1059,         41]
-NotebookOutlinePosition[      1403,         56]
-CellTagsIndexPosition[      1360,         53]
+NotebookDataLength[     16457,        392]
+NotebookOptionsPosition[     15162,        343]
+NotebookOutlinePosition[     15506,        358]
+CellTagsIndexPosition[     15463,        355]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -30,11 +30,313 @@ Cell["EigenFaces:", "Section",
 
 Cell[CellGroupData[{
 
-Cell["Func:", "Subsubsection",
- CellChangeTimes->{{3.6700607346773653`*^9, 3.670060755687566*^9}}],
+Cell["Import:", "Subsubsection",
+ CellChangeTimes->{{3.6700607346773653`*^9, 3.670060755687566*^9}, {
+  3.6700667738409185`*^9, 3.670066774645913*^9}}],
 
-Cell[BoxData[""], "Code",
- CellChangeTimes->{{3.6700607589645963`*^9, 3.6700607966379356`*^9}}]
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"dataset", "=", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<classdata.mat\>\"", ",", "\"\<Data\>\""}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.6700607589645963`*^9, 3.6700607966379356`*^9}, {
+   3.6700640619148645`*^9, 3.6700640657673645`*^9}, 3.6700642253648643`*^9, {
+   3.670064368439864*^9, 3.6700643697598643`*^9}, {3.6700646581023645`*^9, 
+   3.670064665422364*^9}, {3.6700647102823644`*^9, 3.670064710462364*^9}, 
+   3.6700647785343647`*^9, {3.6700652651983643`*^9, 3.6700652770653644`*^9}, {
+   3.6700653461403646`*^9, 3.6700653608853645`*^9}, {3.670065393347864*^9, 
+   3.6700653988153644`*^9}, {3.670065433847864*^9, 3.6700654625603647`*^9}, {
+   3.670065592216683*^9, 3.6700656442800064`*^9}, {3.6700656817992024`*^9, 
+   3.670065702138974*^9}, {3.6700667394661617`*^9, 3.6700667704634447`*^9}, {
+   3.670071390460267*^9, 3.670071392955267*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Func:", "Subsubsection",
+ CellChangeTimes->{{3.670066781283366*^9, 3.670066783203351*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vectorList", " ", "=", " ", 
+   RowBox[{"Flatten", "/@", "dataset"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"centeredList", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"#", "-", 
+       RowBox[{"Mean", "[", "#", "]"}]}], ")"}], "&"}], "/@", 
+    "vectorList"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"cov", "=", 
+   RowBox[{"Covariance", "[", 
+    RowBox[{"Transpose", "[", "centeredList", "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"eval", ",", "evec"}], "}"}], "=", 
+   RowBox[{"Eigensystem", "[", "cov", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"evec", "=", 
+    RowBox[{"Normalize", "/@", "evec"}]}], "*)"}]}]}], "Code",
+ InitializationCell->False,
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQbRVidUki4rWji/aT6yB67Z6ZX0G0dEL+DxB9c4LT
+HxAter/5L4gu+C8iIgmkbd4tAtMzDdvMwPwuV3MQnVXM7w2irzgK+IDoH3/X
+hoLVlS4KA9G3D6yJAtHpQQkJIPrT/SdpIDqnOzsXRHPkzK4A0V5JIdUgWkON
+uRlEZwgfA9OvW9ymgOh3e+qmguiK1dbbQfSx6gv7QLTFdb5zIHqJw7tbYPr8
+rEcgetcC2ydg9QLz3oNog5reryD6V4jCLxD9fNq13yA6UiGVUQpIS33hZgHR
+L1uDFUD0jS5TJRDtt+mBN4jOM/8FpgHLrJQT
+  "]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", "evec", "]"}]], "Code",
+ CellChangeTimes->{{3.6700692980617547`*^9, 3.6700694512528825`*^9}, {
+  3.6700694857067604`*^9, 3.670069486551794*^9}, {3.670069537721341*^9, 
+  3.670069596626766*^9}, {3.670069640059266*^9, 3.670069649116766*^9}, {
+  3.6700697332317657`*^9, 3.6700697374592657`*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.6700693525189333`*^9, 3.6700693926530385`*^9}, 
+   3.670069423726781*^9, {3.6700695428840475`*^9, 3.670069597196766*^9}, 
+   3.6700696495842657`*^9, 3.670069737939266*^9, 3.6700710867412043`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vectorList", " ", "=", " ", 
+   RowBox[{"Flatten", "/@", "dataset"}]}], ";"}], "\n", 
+ RowBox[{"meanImage", "=", 
+  FractionBox[
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Total", "[", 
+       RowBox[{"vectorList", "[", 
+        RowBox[{"[", 
+         RowBox[{"#", ",", "All"}], "]"}], "]"}], "]"}], "&"}], "/@", 
+     RowBox[{"Range", "[", 
+      RowBox[{"Length", "[", 
+       RowBox[{"vectorList", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}]}], ")"}], 
+   RowBox[{"Length", "[", "vectorList", "]"}]]}]}], "Code",
+ CellChangeTimes->{{3.670070216639266*^9, 3.6700703008627663`*^9}, {
+   3.670070332527766*^9, 3.670070351965266*^9}, {3.670070452132766*^9, 
+   3.6700704790727663`*^9}, {3.6700706043459077`*^9, 
+   3.6700706311169786`*^9}, {3.670070666695902*^9, 3.670070697374629*^9}, {
+   3.6700710183959703`*^9, 3.670071031088978*^9}, {3.670071071310587*^9, 
+   3.6700710736506805`*^9}, 3.67007112840287*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(\\*RowBox[{\\\"345\\\"}]\\)\[NoBreak] \
+of \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\
+\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.925`\\\", \
+\\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \
+\\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\
+\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\
+\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \
+\\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\
+\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\
+\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.925`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\
+\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.93`\
+\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.93`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.92`\\\", \\\",\\\", \\\"0.92`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.945`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.93`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.94`\\\", \
+\\\",\\\", \\\"0.93`\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"92110\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\
+\\\"\[LeftSkeleton]\\\", \\\"49\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"294\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\"}\\\"}]\\)\[NoBreak] does not exist. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partw\\\", ButtonNote -> \
+\\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6700710868512087`*^9, 3.6700710873012266`*^9}, 
+   3.670071151943812*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(\\*RowBox[{\\\"346\\\"}]\\)\[NoBreak] \
+of \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\
+\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.925`\\\", \
+\\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \
+\\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\
+\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\
+\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \
+\\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\
+\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\
+\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.925`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\
+\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.93`\
+\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.93`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.92`\\\", \\\",\\\", \\\"0.92`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.945`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.93`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.94`\\\", \
+\\\",\\\", \\\"0.93`\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"92110\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\
+\\\"\[LeftSkeleton]\\\", \\\"49\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"294\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\"}\\\"}]\\)\[NoBreak] does not exist. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partw\\\", ButtonNote -> \
+\\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6700710868512087`*^9, 3.6700710873012266`*^9}, 
+   3.6700711836350794`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(\\*RowBox[{\\\"347\\\"}]\\)\[NoBreak] \
+of \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\
+\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.925`\\\", \
+\\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \
+\\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\
+\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\
+\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \
+\\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\
+\", \\\"0.94`\\\", \\\",\\\", \\\"0.94`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\
+\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.925`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\
+\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.93`\
+\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.93`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.92`\\\", \\\",\\\", \\\"0.92`\\\", \\\",\\\", \\\"0.935`\\\", \
+\\\",\\\", \\\"0.945`\\\", \\\",\\\", \\\"0.93`\\\", \\\",\\\", \
+\\\"0.93`\\\", \\\",\\\", \\\"0.935`\\\", \\\",\\\", \\\"0.94`\\\", \
+\\\",\\\", \\\"0.93`\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"92110\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\
+\\\"\[LeftSkeleton]\\\", \\\"49\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"294\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\"}\\\"}]\\)\[NoBreak] does not exist. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partw\\\", ButtonNote -> \
+\\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6700710868512087`*^9, 3.6700710873012266`*^9}, 
+   3.6700712198552675`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[RowBox[{\\\"Part\\\", \\\"::\\\", \
+\\\"partw\\\"}], \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during \
+this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6700710868512087`*^9, 3.6700710873012266`*^9}, 
+   3.6700712199052672`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Image", "[", 
+  RowBox[{"ArrayReshape", "[", 
+   RowBox[{"meanImage", ",", 
+    RowBox[{"{", 
+     RowBox[{"Dimensions", "[", 
+      RowBox[{"dataset", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "]"}], "}"}]}], "]"}], "]"}]], "Code",
+ CellChangeTimes->{{3.670070216639266*^9, 3.6700703008627663`*^9}, {
+   3.670070332527766*^9, 3.670070351965266*^9}, {3.670070452132766*^9, 
+   3.6700704790727663`*^9}, {3.6700706043459077`*^9, 
+   3.6700706311169786`*^9}, {3.670070666695902*^9, 3.670070697374629*^9}, 
+   3.6700710183959703`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ArrayReshape", "::", "pdims"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The dimensions \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"360\\\", \\\",\\\", \\\"256\\\"}], \
+\\\"}\\\"}], \\\"}\\\"}]\\)\[NoBreak] are not given as a list of positive \
+machine integers. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/ArrayReshape\\\", ButtonNote -> \
+\\\"ArrayReshape::pdims\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6700710870987186`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Image", "::", "imgarray"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The specified argument \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"ArrayReshape\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"ComplexInfinity\\\", \\\",\\\", \
+\\\"ComplexInfinity\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"360\\\", \\\",\\\", \\\"256\\\"}], \
+\\\"}\\\"}], \\\"}\\\"}]}], \\\"]\\\"}]\\)\[NoBreak] should be an array of \
+rank 2 or 3 with machine-sized numbers. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/Image\\\", ButtonNote -> \
+\\\"Image::imgarray\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6700710871712213`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Image", "[", 
+  RowBox[{"ArrayReshape", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"ComplexInfinity", ",", "ComplexInfinity"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"360", ",", "256"}], "}"}], "}"}]}], "]"}], "]"}]], "Output",
+ CellChangeTimes->{3.6700710871737213`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dimensions", "@", "vectorList"}]], "Input",
+ CellChangeTimes->{{3.670070566302766*^9, 3.670070570852766*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"344", ",", "92160"}], "}"}]], "Output",
+ CellChangeTimes->{3.6700705711977663`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{"\"\<classdata.mat\>\"", ",", "\"\<elements\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.6700713473052673`*^9, 3.670071351205267*^9}}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -60,8 +362,35 @@ Cell[580, 22, 97, 1, 101, "Title"],
 Cell[CellGroupData[{
 Cell[702, 27, 96, 1, 70, "Section"],
 Cell[CellGroupData[{
-Cell[823, 32, 98, 1, 39, "Subsubsection"],
-Cell[924, 35, 95, 1, 52, "Code"]
+Cell[823, 32, 151, 2, 39, "Subsubsection"],
+Cell[977, 36, 1063, 19, 73, "Code"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2077, 60, 96, 1, 39, "Subsubsection"],
+Cell[2176, 63, 1146, 33, 133, "Code",
+ InitializationCell->False],
+Cell[CellGroupData[{
+Cell[3347, 100, 330, 5, 52, "Code"],
+Cell[3680, 107, 246, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3963, 115, 977, 23, 90, "Code"],
+Cell[4943, 140, 2245, 34, 73, "Message"],
+Cell[7191, 176, 2247, 34, 73, "Message"],
+Cell[9441, 212, 2247, 34, 73, "Message"],
+Cell[11691, 248, 616, 13, 21, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12344, 266, 557, 12, 52, "Code"],
+Cell[12904, 280, 602, 12, 21, "Message"],
+Cell[13509, 294, 787, 15, 39, "Message"],
+Cell[14299, 311, 327, 9, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14663, 325, 133, 2, 31, "Input"],
+Cell[14799, 329, 123, 3, 31, "Output"]
+}, Open  ]],
+Cell[14937, 335, 185, 3, 31, "Input"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -70,4 +399,3 @@ Cell[924, 35, 95, 1, 52, "Code"]
 *)
 
 (* End of internal cache information *)
-
